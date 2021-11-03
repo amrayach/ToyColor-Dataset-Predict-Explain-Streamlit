@@ -29,7 +29,8 @@ class MLP(nn.Module):
 
     def get_optimizer(self):
         if self.args.get('Train', 'optimizer') == "Adam":
-            optimizer = torch.optim.Adam(self.parameters(), lr=self.args.getfloat('Train', 'learning_rate'))
+            optimizer = torch.optim.Adam(self.parameters(), lr=self.args.getfloat('Train', 'learning_rate'),
+                                         weight_decay=self.args.getfloat('Train', 'weight_decay'))
         else:
             raise Exception("Please select a valid optimizer !!")
 
